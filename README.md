@@ -21,6 +21,8 @@ The code to producing our best model is found in best_model_training.ipynb. with
 [you can click here](https://epflch-my.sharepoint.com/:u:/g/personal/rasmus_veski_epfl_ch/EVNf9gKOXrRPph5S3I4-jWQBvgB6pU3lz1u-sMCdNcEPtQ?e=uyQCDC) (226MB)
 This notebook also contains the code to produce the accuracy and IoU scores you see in the report.
 
+Put the best_model.pth file in the models-folder to be able to run the analysis code.
+
 Additionally, you can run best_model_analysis.ipynb, which contains the code to analyse how our best model predicted specific images. For choosing the testing image regulate the  indice argument in the plot_truth_and_prediction() function.
 
 ## Other models
