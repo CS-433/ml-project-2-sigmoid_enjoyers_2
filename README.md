@@ -21,4 +21,18 @@ This notebook also contains the code to produce the accuracy and IoU scores you 
 
 Additionally, you can run best_model_analysis.ipynb, which contains the code to analyse how our best model predicted specific images. For choosing the testing image regulate the  indice argument in the plot_truth_and_prediction() function.
 
+## Other models
+The training and evaluation of all our other models is in modelling_clean.ipynb. This is a huge notebook, which is not feasible to be "run all" (would take a day on CPU). It is structured like the results table in the report.
 
+To train a desired model first read the data you want to train it with. THe "Reading data section" has 3 cells:
+*Unaugmented data (2016)
+*Augmented data (2016)
+*All years data
+
+Run the cell which data you want (you can run all if you have tons of memory)
+
+Then proceed to Modelling choose the section of which model you want to run: U-Net, DeepLab or Hypercolumn. Run all cells in those sections until section Baseline. From here choose either Baseline, Augmented Data or All Data. To train and evaluate that model run all cells inside the chosen section.
+
+To preserve you from waiting on the training process, the logs of our previous trainings are written into files in training_logs/. These are read in for the plotting of the training. However, due to the models themselves being large, we have not saved the worse models.
+
+Finally, there is a file Training_for_iou.ipynb, which contains the training and evaluation process for our U-Net model using a custom loss function described in the report section III. MODELS AND METHODS - U-Net.
