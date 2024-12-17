@@ -1,0 +1,12 @@
+numpy
+matplotlib
+rasterio
+scikit-learn
+torch
+torchvision
+tensorflow
+pretrainedmodels
+segmentation_models
+torchinfo
+nbformat
+ipykernel

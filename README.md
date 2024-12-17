@@ -10,6 +10,8 @@ The data required to run any code can be found [here](https://enacshare.epfl.ch/
 The libraries required to run the code are in requirements.txt
 
 # Repository setup
+With Python version 3.9.21 (probably works for other versions too, but we have tested with 3.9.21), run ```pip install -r requirements.txt```.
+After this all files in the repository should be runnable.
 
 ## Data preparation
 The file data_preprocessing.ipynb contains all of the preprocessing we do with the data. Before running any model training, this needs to be run. It will generate cached training and validation data in cache/. In our training notebooks there are designated cells to executing the code in data_preprocessing.ipynb. They are commented out as this notebook needs to only be run once.
