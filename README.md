@@ -18,17 +18,15 @@ The file data_preprocessing.ipynb contains all of the preprocessing we do with t
 
 ## Best model
 The code to producing our best model is found in best_model_training.ipynb. with a CPU it takes around 6h to train. To download the model this code produces 
-[you can click here](https://epflch-my.sharepoint.com/:u:/g/personal/rasmus_veski_epfl_ch/EVNf9gKOXrRPph5S3I4-jWQBvgB6pU3lz1u-sMCdNcEPtQ?e=uyQCDC) (226MB)
-This notebook also contains the code to produce the accuracy and IoU scores you see in the report.
-
-Put the best_model.pth file in the models-folder to be able to run the analysis code.
+[you can click here](https://epflch-my.sharepoint.com/:u:/g/personal/rasmus_veski_epfl_ch/EVNf9gKOXrRPph5S3I4-jWQBvgB6pU3lz1u-sMCdNcEPtQ?e=uyQCDC) (226MB).
+Put the best_model.pth file in the models-folder. This notebook also contains the code to produce the accuracy and IoU scores you see in the report. If you only want the evaluation part then just run the imports, put the downloaded model into the models-folder and execute the code in the evaluation section
 
 Additionally, you can run best_model_analysis.ipynb, which contains the code to analyse how our best model predicted specific images. For choosing the testing image regulate the  indice argument in the plot_truth_and_prediction() function.
 
 ## Other models
 The training and evaluation of all our other models is in modelling_clean.ipynb. This is a huge notebook, which is not feasible to be "run all" (would take a day on CPU). It is structured like the results table in the report.
 
-To train a desired model first read the data you want to train it with. THe "Reading data section" has 3 cells:
+To train a desired model first read the data you want to train it with. The "Reading data section" has 3 cells:
 *Unaugmented data (2016)
 *Augmented data (2016)
 *All years data
