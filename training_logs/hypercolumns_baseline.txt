@@ -1,0 +1,24 @@
+Epoch 1/30
+2/2 [==============================] - 8s 3s/step - loss: 1.5774 - accuracy: 0.5413 - val_loss: 1106.0546 - val_accuracy: 0.2589
+
+Epoch 00001: val_loss improved from inf to 1106.05457, saving model to hypercolumns_baseline.keras
+Epoch 2/30
+2/2 [==============================] - 5s 2s/step - loss: 1.0233 - accuracy: 0.6717 - val_loss: 1980.0320 - val_accuracy: 0.2532
+
+Epoch 00002: val_loss did not improve from 1106.05457
+Epoch 3/30
+2/2 [==============================] - 5s 2s/step - loss: 1.3107 - accuracy: 0.6968 - val_loss: 3638.4390 - val_accuracy: 0.2648
+
+Epoch 00003: val_loss did not improve from 1106.05457
+Epoch 4/30
+2/2 [==============================] - 5s 2s/step - loss: 1.9732 - accuracy: 0.5856 - val_loss: 5865.5869 - val_accuracy: 0.2692
+
+Epoch 00004: val_loss did not improve from 1106.05457
+Epoch 5/30
+2/2 [==============================] - 5s 2s/step - loss: 1.3268 - accuracy: 0.6668 - val_loss: 5879.2705 - val_accuracy: 0.2114
+
+Epoch 00005: val_loss did not improve from 1106.05457
+Epoch 6/30
+2/2 [==============================] - 5s 2s/step - loss: 1.2707 - accuracy: 0.6674 - val_loss: 6005.4980 - val_accuracy: 0.0801
+
+Epoch 00006: val_loss did not improve from 1106.05457

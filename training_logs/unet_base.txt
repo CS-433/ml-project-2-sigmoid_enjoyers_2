@@ -1,0 +1,32 @@
+Epoch 1/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 87s 1s/step - accuracy: 0.2126 - loss: 1.9691 - val_accuracy: 0.2320 - val_loss: 77.6899
+Epoch 2/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 938ms/step - accuracy: 0.5310 - loss: 1.2872 - val_accuracy: 0.4375 - val_loss: 1.9059
+Epoch 3/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 942ms/step - accuracy: 0.6783 - loss: 1.0190 - val_accuracy: 0.6506 - val_loss: 1.1229
+Epoch 4/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 927ms/step - accuracy: 0.7483 - loss: 0.8705 - val_accuracy: 0.7669 - val_loss: 0.8606
+Epoch 5/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 939ms/step - accuracy: 0.7657 - loss: 0.7778 - val_accuracy: 0.7752 - val_loss: 0.7565
+Epoch 6/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 936ms/step - accuracy: 0.7791 - loss: 0.7097 - val_accuracy: 0.7807 - val_loss: 0.6868
+Epoch 7/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 937ms/step - accuracy: 0.7841 - loss: 0.6688 - val_accuracy: 0.7901 - val_loss: 0.6286
+Epoch 8/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 57s 945ms/step - accuracy: 0.7899 - loss: 0.6412 - val_accuracy: 0.7949 - val_loss: 0.6154
+Epoch 9/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 57s 950ms/step - accuracy: 0.7984 - loss: 0.6072 - val_accuracy: 0.8010 - val_loss: 0.5909
+Epoch 10/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 927ms/step - accuracy: 0.8030 - loss: 0.5922 - val_accuracy: 0.7959 - val_loss: 0.5950
+Epoch 11/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 931ms/step - accuracy: 0.8124 - loss: 0.5644 - val_accuracy: 0.8001 - val_loss: 0.5845
+Epoch 12/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 932ms/step - accuracy: 0.8171 - loss: 0.5447 - val_accuracy: 0.8021 - val_loss: 0.5676
+Epoch 13/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 932ms/step - accuracy: 0.8255 - loss: 0.5240 - val_accuracy: 0.8111 - val_loss: 0.5487
+Epoch 14/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 928ms/step - accuracy: 0.8307 - loss: 0.5050 - val_accuracy: 0.8181 - val_loss: 0.5166
+Epoch 15/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 935ms/step - accuracy: 0.8370 - loss: 0.4840 - val_accuracy: 0.8177 - val_loss: 0.5202
+Epoch 16/40
+60/60 ━━━━━━━━━━━━━━━━━━━━ 56s 935ms/step - accuracy: 0.8410 - loss: 0.4687 - val_accuracy: 0.8131 - val_loss: 0.5249

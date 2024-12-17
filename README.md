@@ -5,7 +5,7 @@ In this project we train segmentation models to conduct pixel-wise classificatio
 
 
 # Prerequisites
-The data required to run any code can be found [here](https://enacshare.epfl.ch/bY2wS5TcA4CefGks7NtXg) (1.4GB). Download Landcover_Greenland.zip. After unzipping all the data needs to be in images/ folder.
+The data required to run any code can be found [here](https://enacshare.epfl.ch/bY2wS5TcA4CefGks7NtXg) (1.4GB). Download Landcover_Greenland.zip. After unzipping all the data needs to be in images/ and labels/ folders.
 
 The libraries required to run the code are in requirements.txt
 
