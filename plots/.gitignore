@@ -1,0 +1,4 @@
+# Ignore all files in plots/ except this one
+
+*
+!.gitignore
