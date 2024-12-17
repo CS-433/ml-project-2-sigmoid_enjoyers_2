@@ -1,0 +1,6 @@
+images/
+labels/
+processed-data/
+cache/
+models/
+plots/
