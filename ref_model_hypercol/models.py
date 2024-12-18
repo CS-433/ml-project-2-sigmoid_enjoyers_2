@@ -22,7 +22,6 @@ class UNetResNextHyperSE(nn.Module):
         False: bilinear interpolation is used in decoder.
         True: deconvolution is used in decoder.
         Defaults to False.
-
     """
 
     def __init__(self, encoder_depth, num_classes, num_filters=32, dropout_2d=0.2, is_deconv=False):
@@ -30,7 +29,6 @@ class UNetResNextHyperSE(nn.Module):
         self.num_classes = num_classes
         self.dropout_2d = dropout_2d
         
-        # changed version of the original code
         if encoder_depth == 50:
             self.encoder = pretrainedmodels.__dict__['se_resnext50_32x4d'](num_classes=1000, pretrained=None)
             bottom_channel_nr = 2048
@@ -40,10 +38,10 @@ class UNetResNextHyperSE(nn.Module):
         else:
             raise NotImplementedError('only 50, 101 versions of SE-ResNeXt are implemented')
 
-        # Modify the first convolution layer to accept 7 channels
+        # modify the first convolution layer to accept 7 channels
         old_conv1 = self.encoder.layer0.conv1
         self.encoder.layer0.conv1 = nn.Conv2d(
-            in_channels=7,  # Update to match your input channels
+            in_channels=7, 
             out_channels=old_conv1.out_channels,
             kernel_size=old_conv1.kernel_size,
             stride=old_conv1.stride,
@@ -51,20 +49,10 @@ class UNetResNextHyperSE(nn.Module):
             bias=old_conv1.bias
         )
 
-        # Initialize weights for the new convolution layer
+        # initialize weights for the new convolution layer
         with torch.no_grad():
-            self.encoder.layer0.conv1.weight[:, :3, :, :] = old_conv1.weight  # Copy RGB weights
-            self.encoder.layer0.conv1.weight[:, 3:, :, :] = old_conv1.weight.mean(dim=1, keepdim=True)  # Average for extra channels
-
-
-        '''if encoder_depth == 50:
-            self.encoder = pretrainedmodels.__dict__['se_resnext50_32x4d'](num_classes=1000, pretrained=None)
-            bottom_channel_nr = 2048
-        elif encoder_depth == 101:
-            self.encoder = pretrainedmodels.__dict__['se_resnext101_32x4d'](num_classes=1000, pretrained=None)
-            bottom_channel_nr = 2048
-        else:
-            raise NotImplementedError('only 34, 101, 152 version of Resnet are implemented')'''
+            self.encoder.layer0.conv1.weight[:, :3, :, :] = old_conv1.weight  
+            self.encoder.layer0.conv1.weight[:, 3:, :, :] = old_conv1.weight.mean(dim=1, keepdim=True)  
 
         self.pool = nn.MaxPool2d(2, 2)
         self.relu = nn.ReLU(inplace=True)
@@ -93,67 +81,6 @@ class UNetResNextHyperSE(nn.Module):
         self.dsv2 = blocks.UnetDsv3(in_size=num_filters * 2, out_size=num_classes, scale_factor=2 * 2)
         self.dsv1 = nn.Conv2d(in_channels=num_filters * 2 * 2, out_channels=num_classes, kernel_size=1)
 
-
-    '''def __init__(self, encoder_depth, num_classes, num_filters=32, dropout_2d=0.2, is_deconv=False):
-        super().__init__()
-        self.num_classes = num_classes
-        self.dropout_2d = dropout_2d
-
-        if encoder_depth == 50:
-            # modified from original code; before: pretrained='imagenet', after: pretrained=None
-            self.encoder = pretrainedmodels.__dict__['se_resnext50_32x4d'](num_classes=1000, pretrained=None) 
-            bottom_channel_nr = 2048
-        elif encoder_depth == 101:
-            # modified from original code; before: pretrained='imagenet', after: pretrained=None
-            self.encoder = pretrainedmodels.__dict__['se_resnext101_32x4d'](num_classes=1000, pretrained=None) 
-            bottom_channel_nr = 2048
-        else:
-            raise NotImplementedError('only 34, 101, 152 version of Resnet are implemented')
-
-        self.pool = nn.MaxPool2d(2, 2)
-
-        self.relu = nn.ReLU(inplace=True)
-        
-        # conv1 is modified in order to handle 7 channel input
-        #--------------original version----------------
-        #conv1 = nn.Conv2d(3, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
-        #conv1.weight = self.encoder.layer0.conv1.weight
-        #------------------------------------------------
-        #--------------modified version----------------
-        conv1 = nn.Conv2d(7, 64, kernel_size=(7, 7), stride=(1, 1), padding=(3, 3), bias=False)
-        # Initialize weights for the 7-channel input by averaging the pre-trained weights for the 3-channel input
-        if hasattr(self.encoder.layer0, "conv1"):
-            pretrained_weights = self.encoder.layer0.conv1.weight
-            conv1.weight.data[:, :3, :, :] = pretrained_weights  # Copy weights for RGB channels
-            conv1.weight.data[:, 3:, :, :] = pretrained_weights.mean(dim=1, keepdim=True)  # Average weights for additional channels
-        #------------------------------------------------
-         
-
-        self.input_adjust = blocks.EncoderBlock(
-            nn.Sequential(conv1, self.encoder.layer0.bn1, self.encoder.layer0.relu1, self.pool),
-            num_filters*2
-        )
-
-        self.conv1 = blocks.EncoderBlock(self.encoder.layer1, bottom_channel_nr//8)
-        self.conv2 = blocks.EncoderBlock(self.encoder.layer2, bottom_channel_nr//4)
-        self.conv3 = blocks.EncoderBlock(self.encoder.layer3, bottom_channel_nr//2)
-        self.conv4 = blocks.EncoderBlock(self.encoder.layer4, bottom_channel_nr)
-
-        self.dec4 = blocks.DecoderBlockV4(bottom_channel_nr, num_filters * 8 * 2, num_filters * 8, is_deconv)
-        self.dec3 = blocks.DecoderBlockV4(bottom_channel_nr // 2 + num_filters * 8, num_filters * 8 * 2, num_filters * 8,
-                                   is_deconv)
-        self.dec2 = blocks.DecoderBlockV4(bottom_channel_nr // 4 + num_filters * 8, num_filters * 4 * 2, num_filters * 2,
-                                   is_deconv)
-        self.dec1 = blocks.DecoderBlockV4(bottom_channel_nr // 8 + num_filters * 2, num_filters * 2 * 2, num_filters * 2 * 2,
-                                   is_deconv)
-        self.final = nn.Conv2d(2 * 2, num_classes, kernel_size=1)
-
-        # deep supervision
-        self.dsv4 = blocks.UnetDsv3(in_size=num_filters * 8, out_size=num_classes, scale_factor=8 * 2)
-        self.dsv3 = blocks.UnetDsv3(in_size=num_filters * 8, out_size=num_classes, scale_factor=4 * 2)
-        self.dsv2 = blocks.UnetDsv3(in_size=num_filters * 2, out_size=num_classes, scale_factor=2 * 2)
-        self.dsv1 = nn.Conv2d(in_channels=num_filters * 2 * 2, out_channels=num_classes, kernel_size=1)'''
-    
     # modified forward function
     def forward(self, x):
         input_adjust = self.input_adjust(x)
@@ -182,30 +109,6 @@ class UNetResNextHyperSE(nn.Module):
         final_output = F.interpolate(final_output, size=(128, 128), mode="bilinear", align_corners=False)
 
         return final_output
-
-
-
-    '''def forward(self, x):
-        input_adjust = self.input_adjust(x)
-        conv1 = self.conv1(input_adjust)
-        conv2 = self.conv2(conv1)
-        conv3 = self.conv3(conv2)
-
-        center = self.conv4(conv3)
-
-        dec4 = self.dec4(center)
-        dec3 = self.dec3(torch.cat([dec4, conv3], 1))
-        dec2 = self.dec2(torch.cat([dec3, conv2], 1))
-        dec1 = self.dec1(torch.cat([dec2, conv1], 1))
-
-        # Deep Supervision
-        dsv4 = self.dsv4(dec4)
-        dsv3 = self.dsv3(dec3)
-        dsv2 = self.dsv2(dec2)
-        dsv1 = self.dsv1(dec1)
-        dsv0 = torch.cat([dsv1, dsv2, dsv3, dsv4], dim=1)
-
-        return self.final(dsv0)'''
 
 
 class UNetResNext(nn.Module):
