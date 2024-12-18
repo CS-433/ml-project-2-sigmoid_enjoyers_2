@@ -1,5 +1,3 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/UDdkOEMs)
-
 # Task
 In this project we train segmentation models to conduct pixel-wise classification of satellite images taken of Greenland. The goal is to be able to accurately label changing landscapes without any manual work.
 
@@ -15,6 +13,9 @@ After this all files in the repository should be runnable.
 
 ## Data preparation
 The file data_preprocessing.ipynb contains all of the preprocessing we do with the data. Before running any model training, this needs to be run. It will generate cached training and validation data in cache/. In our training notebooks there are designated cells to executing the code in data_preprocessing.ipynb. They are commented out as this notebook needs to only be run once.
+
+## Distribution of labels
+In the file labels_distribution.ipynb, we analyze the distribution of different classes in the training and test datasets.
 
 ## Best model
 The code to producing our best model is found in best_model_training.ipynb. This model was taken from a publicly available implementation from [this GitHub repository](https://github.com/K-Mike/Automatic-salt-deposits-segmentation). Specifically we took models.py and blocks.py files, and before we used them we modified the model (```UNetResNextHyperSE```) to fit our data.
