@@ -1,3 +1,7 @@
+import torch
+import math
+
+
 #Calculates accuracy between outputs and target values, where both are a 4-dimensional torch tensor
 def calculate_accuracy(outputs, targets):
     #Reduce dimensions back from one-hot encoding to compare

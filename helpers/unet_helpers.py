@@ -1,3 +1,4 @@
+import os
 #Read the given filepath for the presaved logs of the training of a unet
 def read_unet_logs(filepath):
     train_accuracies = []
