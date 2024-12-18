@@ -49,9 +49,9 @@ def read_deeplab_logs(filepath):
             val_losses.append(float(lineparts[2].split(":")[1]))
             train_accuracies.append(float(lineparts[3].split(":")[1]))
             val_accuracies.append(float(lineparts[4].split(":")[1]))
-            train_iou_list = ast.literal_eval(lineparts[5].split(":")[1])
+            train_iou_list = ast.literal_eval(lineparts[5].split(":")[1].strip())
             train_ious.append(train_iou_list)
-            val_iou_list = ast.literal_eval(lineparts[6].split(":")[1])
+            val_iou_list = ast.literal_eval(lineparts[6].split(":")[1].strip())
             val_ious.append(val_iou_list)
             
     return train_accuracies, train_losses, train_ious, val_accuracies, val_losses, val_ious
