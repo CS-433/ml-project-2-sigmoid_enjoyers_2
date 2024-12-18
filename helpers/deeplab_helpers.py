@@ -15,8 +15,8 @@ def calculate_IOU(outputs, targets, num_classes):
     iou_list = []
     #Iterate over classes
     for cls in range(num_classes):
-        pred_mask = (preds == cls)
-        label_mask = (labels == cls)
+        pred_mask = (preds == cls) #Where the prediction is the class
+        label_mask = (labels == cls) #Where the label is the class
         intersection = (pred_mask & label_mask).sum().item()
         union = (pred_mask | label_mask).sum().item()
         if union == 0:
