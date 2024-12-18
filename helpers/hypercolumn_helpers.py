@@ -1,4 +1,5 @@
-
+import os
+import matplotlib.pyplot as plt
 def load_data(file_path):
     """Load data from a txt file and return as a list of floats."""
     with open(file_path, 'r') as file:
